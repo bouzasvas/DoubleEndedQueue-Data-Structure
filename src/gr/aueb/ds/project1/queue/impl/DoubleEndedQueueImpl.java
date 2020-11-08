@@ -1,4 +1,8 @@
-package gr.aueb.ds.project1.queue;
+package gr.aueb.ds.project1.queue.impl;
+
+import gr.aueb.ds.project1.queue.helpers.DoubleEndedQueueIterator;
+import gr.aueb.ds.project1.queue.helpers.Node;
+import gr.aueb.ds.project1.queue.api.DoubleEndedQueue;
 
 import java.io.PrintStream;
 import java.util.Iterator;
@@ -39,6 +43,8 @@ public class DoubleEndedQueueImpl<T> implements DoubleEndedQueue<T>, Iterable<T>
         swapNodes(true, first.getNext());
         this.size--;
 
+        if (isEmpty()) deleteAllElements();
+
         return firstItem;
     }
 
@@ -46,11 +52,14 @@ public class DoubleEndedQueueImpl<T> implements DoubleEndedQueue<T>, Iterable<T>
     public void addLast(T item) {
         Node<T> currentLast = this.last;
         Node<T> node = new Node<>(currentLast, null, item);
-
+        // Swap Last Node
         swapNodes(false, node);
 
         // First Item of Queue
-        if (isEmpty()) swapNodes(true, node);
+        if (isEmpty()) {
+            // Swap First Node
+            swapNodes(true, node);
+        }
 
         // Always increase size of Queue
         this.size++;
@@ -63,6 +72,8 @@ public class DoubleEndedQueueImpl<T> implements DoubleEndedQueue<T>, Iterable<T>
         Node<T> currentLast = this.last;
         swapNodes(false, currentLast.getPrevious());
         this.size--;
+
+        if (isEmpty()) deleteAllElements();
 
         return currentLast.getItem();
     }
@@ -79,7 +90,9 @@ public class DoubleEndedQueueImpl<T> implements DoubleEndedQueue<T>, Iterable<T>
 
     @Override
     public void printQueue(PrintStream stream) {
-
+        for (T item : this) {
+            stream.println(item);
+        }
     }
 
     @Override
@@ -90,17 +103,29 @@ public class DoubleEndedQueueImpl<T> implements DoubleEndedQueue<T>, Iterable<T>
     // Helper Functions
     private void swapNodes(boolean firstNode, Node<T> node) {
         if (firstNode) {
-            node.setPrevious(null);
+            // Update previous item of Current First Item in order to point to new First
+            if (!isEmpty()) this.first.setPrevious(node);
+
+            if (node != null) node.setPrevious(null);
             this.first = node;
+
+            if (isEmpty()) this.first.setNext(node);
         }
         else {
-            node.setNext(null);
+            // Update next item of Current Last Item in order to point to new Last
+            if (!isEmpty()) this.last.setNext(node);
+
+            if (node != null) node.setNext(null);
             this.last = node;
         }
     }
 
-    // Iterator
+    private void deleteAllElements() {
+        this.first = null;
+        this.last = null;
+    }
 
+    // Iterator
     @Override
     public Iterator<T> iterator() {
         return new DoubleEndedQueueIterator<>(this.first);

@@ -1,6 +1,4 @@
-package gr.aueb.ds.project1.queue;
-
-import java.util.Iterator;
+package gr.aueb.ds.project1.queue.helpers;
 
 public class Node<T> {
 
