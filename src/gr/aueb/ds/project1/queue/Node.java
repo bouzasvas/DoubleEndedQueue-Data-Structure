@@ -1,35 +1,25 @@
 package gr.aueb.ds.project1.queue;
 
 import java.util.Iterator;
-import java.util.Spliterator;
-import java.util.function.Consumer;
 
-public class Node<T> implements Iterable<T> {
+public class Node<T> {
 
     private Node<T> previous;
     private Node<T> next;
     private T item;
 
     public Node() {
+        this(null);
     }
 
     public Node(T item) {
+        this(null, null, item);
+    }
+
+    public Node(Node<T> previous, Node<T> next, T item) {
+        this.previous = previous;
+        this.next = next;
         this.item = item;
-    }
-
-    @Override
-    public Iterator<T> iterator() {
-        return null;
-    }
-
-    @Override
-    public void forEach(Consumer<? super T> action) {
-
-    }
-
-    @Override
-    public Spliterator<T> spliterator() {
-        return null;
     }
 
     // Setters & Getters

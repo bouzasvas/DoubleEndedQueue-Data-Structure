@@ -1,9 +1,12 @@
 package gr.aueb.ds.project1.queue;
 
 import java.io.PrintStream;
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class DoubleEndedQueueImpl<T> implements DoubleEndedQueue<T> {
+public class DoubleEndedQueueImpl<T> implements DoubleEndedQueue<T>, Iterable<T> {
+
+    private static final String EXCEPTION_MSG = "Queue is empty!";
 
     private Node<T> first;
     private Node<T> last;
@@ -16,19 +19,21 @@ public class DoubleEndedQueueImpl<T> implements DoubleEndedQueue<T> {
 
     @Override
     public void addFirst(T item) {
-        // First Item of Queue
-        if (isEmpty()) {
-            this.size = 1;
-            this.first = new Node<>(item);
-        }
-        else {
+        Node<T> currentFirst = this.first;
+        Node<T> node = new Node<>(null, currentFirst, item);
 
-        }
+        swapNodes(true, node);
+
+        // First Item of Queue
+        if (isEmpty()) swapNodes(false, node);
+
+        // Always increase size of Queue
+        this.size++;
     }
 
     @Override
     public T removeFirst() throws NoSuchElementException {
-        if (first == null && isEmpty()) throw new NoSuchElementException("Queue is empty!");
+        if (first == null && isEmpty()) throw new NoSuchElementException(EXCEPTION_MSG);
 
         T firstItem = first.getItem();
         swapNodes(true, first.getNext());
@@ -39,22 +44,37 @@ public class DoubleEndedQueueImpl<T> implements DoubleEndedQueue<T> {
 
     @Override
     public void addLast(T item) {
+        Node<T> currentLast = this.last;
+        Node<T> node = new Node<>(currentLast, null, item);
 
+        swapNodes(false, node);
+
+        // First Item of Queue
+        if (isEmpty()) swapNodes(true, node);
+
+        // Always increase size of Queue
+        this.size++;
     }
 
     @Override
     public T removeLast() throws NoSuchElementException {
-        return null;
+        if (this.last == null && isEmpty()) throw new NoSuchElementException(EXCEPTION_MSG);
+
+        Node<T> currentLast = this.last;
+        swapNodes(false, currentLast.getPrevious());
+        this.size--;
+
+        return currentLast.getItem();
     }
 
     @Override
     public T getFirst() {
-        return null;
+        return this.first.getItem();
     }
 
     @Override
     public T getLast() {
-        return null;
+        return this.last.getItem();
     }
 
     @Override
@@ -77,5 +97,12 @@ public class DoubleEndedQueueImpl<T> implements DoubleEndedQueue<T> {
             node.setNext(null);
             this.last = node;
         }
+    }
+
+    // Iterator
+
+    @Override
+    public Iterator<T> iterator() {
+        return new DoubleEndedQueueIterator<>(this.first);
     }
 }
