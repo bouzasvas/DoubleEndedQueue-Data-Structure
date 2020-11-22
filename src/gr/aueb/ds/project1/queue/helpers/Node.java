@@ -7,11 +7,15 @@ public class Node<T> {
     private T item;
 
     public Node() {
-        this(null);
+        this((T) null);
     }
 
     public Node(T item) {
         this(null, null, item);
+    }
+
+    public Node(Node<T> node) {
+        this(node.getPrevious(), node.getNext(), node.getItem());
     }
 
     public Node(Node<T> previous, Node<T> next, T item) {

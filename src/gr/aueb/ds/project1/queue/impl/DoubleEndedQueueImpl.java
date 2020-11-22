@@ -109,7 +109,7 @@ public class DoubleEndedQueueImpl<T> implements DoubleEndedQueue<T>, Iterable<T>
             if (node != null) node.setPrevious(null);
             this.first = node;
 
-            if (isEmpty()) this.first.setNext(node);
+//            if (isEmpty()) this.first.setNext(node);
         }
         else {
             // Update next item of Current Last Item in order to point to new Last
@@ -129,5 +129,15 @@ public class DoubleEndedQueueImpl<T> implements DoubleEndedQueue<T>, Iterable<T>
     @Override
     public Iterator<T> iterator() {
         return new DoubleEndedQueueIterator<>(this.first);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (T t : this) {
+           sb.append(t);
+        }
+
+        return sb.toString();
     }
 }
