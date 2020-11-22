@@ -5,6 +5,10 @@ import gr.aueb.ds.project1.queue.impl.DoubleEndedQueueImpl;
 
 import java.util.Optional;
 
+/**
+ * <p>Converts Postfix expression to Infix expression</p>
+ * <p>Uses {@link PostfixToInfixValidator} to validate expression correctness</p>
+ */
 public class PostfixToInfixConverter {
     private static final String OPEN_PARENTHESIS = "(";
     private static final String CLOSE_PARENTHESIS = ")";
