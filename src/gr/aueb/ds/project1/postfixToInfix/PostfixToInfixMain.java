@@ -14,15 +14,11 @@ public class PostfixToInfixMain {
         printWelcomeMsg(System.out);
 
         String postfixExp = promptUserToEnterPostfixExp(System.out);
-//        String postfixExp = "598+46**7+*";
-
-        PostfixToInfixValidator validator = new PostfixToInfixValidator(postfixExp);
-        validator.validatePostfixExp();
 
         PostfixToInfixConverter postfixToInfixConverter = new PostfixToInfixConverter(postfixExp);
         postfixToInfixConverter.convertPostfixToInfix();
 
-        printResult(System.out, postfixToInfixConverter.getInfixExpresionResult());
+        printResult(System.out, postfixToInfixConverter.getInfixExpressionResult());
     }
 
     private static void printWelcomeMsg(PrintStream ps) {
