@@ -13,8 +13,8 @@ public class PostfixToInfixMain {
     public static void main(String... args) {
         printWelcomeMsg(System.out);
 
-//        String postfixExp = promptUserToEnterPostfixExp(System.out);
-        String postfixExp = "598+46**7+*";
+        String postfixExp = promptUserToEnterPostfixExp(System.out);
+//        String postfixExp = "598+46**7+*";
 
         PostfixToInfixValidator validator = new PostfixToInfixValidator(postfixExp);
         validator.validatePostfixExp();
