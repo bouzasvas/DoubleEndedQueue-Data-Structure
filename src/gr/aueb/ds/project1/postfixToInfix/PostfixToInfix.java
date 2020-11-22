@@ -3,7 +3,7 @@ package gr.aueb.ds.project1.postfixToInfix;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-public class PostfixToInfixMain {
+public class PostfixToInfix {
 
     private static final String SEPARATOR =   "#################################################";
     private static final String WELCOME_MSG = "###### Welcome Postfix 2 Infix Conversion #######";
