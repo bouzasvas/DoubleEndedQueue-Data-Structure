@@ -1,0 +1,1 @@
+javac -cp .\src -d .\target\ .\src\gr\aueb\ds\project1\dnaPalindrome\DNAPalindrome.java
