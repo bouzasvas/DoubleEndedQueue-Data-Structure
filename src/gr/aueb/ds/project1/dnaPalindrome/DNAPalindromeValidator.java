@@ -10,6 +10,13 @@ public class DNAPalindromeValidator {
         this.dnaSequence = dnaSequence;
     }
 
+    /**
+     * <p>Checks if DNA Sequence is valid or not</p>
+     *
+     * <p>A DNA Sequence is not Valid if Contains Letters other than A, T, C, G or empty spaces!</p>
+     *
+     * @throws DNASequenceNotValidException If DNA Sequence is not Valid
+     */
     public void validateDNASequence() {
         if (!this.dnaSequence.matches(VALID_REGEX)) {
             throw new DNASequenceNotValidException(this.dnaSequence);

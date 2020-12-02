@@ -3,6 +3,15 @@ package gr.aueb.ds.project1.dnaPalindrome;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+/**
+ * <p>Main class of DNA Complemented Palindrome Decider</p>
+ * <p>The below steps are performed:</p>
+ * <ul>
+ *     <li>Receive DNA Sequence from user input</li>
+ *     <li>Validate DNA Sequence</li>
+ *     <li>Decider whether or not DNA Sequence is Complemented Palindrome and inform user</li>
+ * </ul>
+ */
 public class DNAPalindrome {
 
     private static final String RED_COLOR = "\u001B[31m";
