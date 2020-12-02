@@ -54,10 +54,10 @@ public class DNAPalindrome {
     private static void printResult(String dnaSequence, boolean isComplementedPalindrome, PrintStream ps) {
         String result;
         if (isComplementedPalindrome) {
-            result = GREEN_COLOR + String.format(TRUE_RESULT_MSG, dnaSequence);
+            result = String.format(TRUE_RESULT_MSG, dnaSequence);
         }
         else {
-            result = RED_COLOR + String.format(FALSE_RESULT_MSG, dnaSequence);
+            result = String.format(FALSE_RESULT_MSG, dnaSequence);
         }
 
         ps.println();
